@@ -12,15 +12,13 @@ class TestPersonalAccount:
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_INPUT)).send_keys(registered_user["email"])
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(registered_user["password"])
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
-        # Ждём загрузки главной после входа
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
-        # Переход в личный кабинет через JavaScript (надёжнее)
         personal_button = driver.find_element(*MainPageLocators.PERSONAL_ACCOUNT_BUTTON)
         driver.execute_script("arguments[0].click();", personal_button)
-        # Ждём появления кнопки "Выход"
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located(PersonalAccountLocators.LOGOUT_BUTTON))
         assert driver.find_element(*PersonalAccountLocators.LOGOUT_BUTTON).is_displayed()
 
+    # остальные три теста аналогично (в них тоже есть ожидание ORDER_BUTTON и JS-клик)
     def test_logout_from_personal_account(self, driver, registered_user):
         driver.get(BASE_URL)
         driver.find_element(*MainPageLocators.PERSONAL_ACCOUNT_BUTTON).click()

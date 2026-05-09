@@ -8,8 +8,9 @@ class MainPageLocators:
     BUN_TAB = (By.XPATH, "//span[text()='Булки']")
     SAUCE_TAB = (By.XPATH, "//span[text()='Соусы']")
     FILLING_TAB = (By.XPATH, "//span[text()='Начинки']")
-    ACTIVE_TAB = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current')]//span")
-
+    ACTIVE_TAB = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current')]//span")   # <-- добавьте эту строку
+    ORDER_BUTTON = (By.XPATH, "//button[text()='Оформить заказ']")
+    
 class LoginPageLocators:
     EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
     PASSWORD_INPUT = (By.XPATH, "//input[@name='Пароль']")

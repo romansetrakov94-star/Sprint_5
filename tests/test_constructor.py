@@ -14,4 +14,4 @@ class TestConstructor:
         driver.execute_script("arguments[0].click();", tab)
         active_tab = driver.find_element(*MainPageLocators.ACTIVE_TAB).text
         assert expected_text in active_tab
-                   
+                     
