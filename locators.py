@@ -16,7 +16,7 @@ class LoginPageLocators:
     LOGIN_BUTTON = (By.XPATH, "//button[text()='Войти']")
     REGISTER_LINK = (By.XPATH, "//a[text()='Зарегистрироваться']")
     FORGOT_PASSWORD_LINK = (By.XPATH, "//a[text()='Восстановить пароль']")
-    RESET_LOGIN_BUTTON = (By.XPATH, "//a[text()='Войти']")   # на /forgot-password
+    RESET_LOGIN_BUTTON = (By.XPATH, "//a[text()='Войти']")   # на странице /forgot-password
 
 class RegistrationPageLocators:
     NAME_INPUT = (By.XPATH, "//label[text()='Имя']/following-sibling::input")
@@ -27,5 +27,5 @@ class RegistrationPageLocators:
     LOGIN_LINK = (By.XPATH, "//a[text()='Войти']")   # на странице регистрации
 
 class PersonalAccountLocators:
-    PROFILE_LINK = (By.XPATH, "//a[text()='Профиль']")
     LOGOUT_BUTTON = (By.XPATH, "//button[contains(text(), 'Выход')]")
+    

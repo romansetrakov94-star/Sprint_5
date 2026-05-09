@@ -12,7 +12,9 @@ class TestLogin:
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_INPUT)).send_keys(registered_user["email"])
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(registered_user["password"])
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
-        WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        # Явная проверка: ждём появления кнопки "Оформить заказ" и проверяем, что она видна
+        order_button = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        assert order_button.is_displayed(), "Кнопка 'Оформить заказ' не отображается после входа"
 
     def test_login_from_personal_account(self, driver, registered_user):
         driver.get(BASE_URL)
@@ -20,7 +22,8 @@ class TestLogin:
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_INPUT)).send_keys(registered_user["email"])
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(registered_user["password"])
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
-        WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        order_button = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        assert order_button.is_displayed(), "Кнопка 'Оформить заказ' не отображается после входа"
 
     def test_login_from_registration_form(self, driver, registered_user):
         driver.get(f"{BASE_URL}/register")
@@ -28,13 +31,15 @@ class TestLogin:
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_INPUT)).send_keys(registered_user["email"])
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(registered_user["password"])
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
-        WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        order_button = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        assert order_button.is_displayed(), "Кнопка 'Оформить заказ' не отображается после входа"
 
     def test_login_from_forgot_password(self, driver, registered_user):
         driver.get(f"{BASE_URL}/forgot-password")
-        # На странице восстановления пароля кнопка "Войти" – это ссылка
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(LoginPageLocators.RESET_LOGIN_BUTTON)).click()
         WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginPageLocators.EMAIL_INPUT)).send_keys(registered_user["email"])
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(registered_user["password"])
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
-        WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        order_button = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, "//button[text()='Оформить заказ']")))
+        assert order_button.is_displayed(), "Кнопка 'Оформить заказ' не отображается после входа"
+        
